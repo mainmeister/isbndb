@@ -12,7 +12,10 @@ class gbooks():
         rj = r.json()
         try:
             for i in rj["items"]:
+                print(repr(i["volumeInfo"]["title"]))
+                print(repr(i["volumeInfo"]["authors"]))
                 print(repr(i["volumeInfo"]["description"]))
+                print('-'*80)
         except:
             pass
 
