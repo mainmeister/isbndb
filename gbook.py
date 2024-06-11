@@ -1,6 +1,7 @@
 import os
 import sys
 import requests
+import json
 
 
 class gbooks():
@@ -21,4 +22,5 @@ if __name__ == "__main__":
     bk = gbooks()
     for line in sys.stdin:
         for i in bk.search(line):
-            print(repr(i))
+            #print(repr(i))
+            print(json.dumps(i, indent=4))
