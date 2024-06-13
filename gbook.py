@@ -2,7 +2,7 @@ import os
 import sys
 import requests
 import json
-
+import argparse
 
 class gbooks():
     googleapikey = os.environ.get('googleapikey')
@@ -19,7 +19,13 @@ class gbooks():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(prog='gbook.py', description='Search Google Books', epilog='Example: gbook.py -q "Book"')
+    parser.add_argument('-p', '--pretty', help='pretty print the output', required=False, action='store_true')
+    args = parser.parse_args()
     bk = gbooks()
     for line in sys.stdin:
         for i in bk.search(line):
-            print(json.dumps(i, indent=4))
+            if args.pretty:
+                print(json.dumps(i, indent=4))
+            else:
+                print(repr(i))
